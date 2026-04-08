@@ -31,7 +31,7 @@ export const item = {
     y: 0,
     filter: "blur(0px)",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       bounce: 0,
       duration: 0.5,
     },

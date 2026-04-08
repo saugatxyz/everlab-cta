@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
 import { useDialKit } from "dialkit";
 import { AVATAR_SRC, HERO_SRC } from "@/components/shared";
+
+// DialKit spring configs need casting to framer-motion's Transition type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const asTransition = (config: any): Transition => config as Transition;
 
 const ARROW_ICON =
   "http://localhost:3845/assets/15254c4835b19a972a9ca9f74a642d6ed33220d2.svg";
@@ -127,7 +131,7 @@ export default function FloatingPage() {
       >
         <motion.div
           layout
-          transition={p.container.layoutSpring}
+          transition={asTransition(p.container.layoutSpring)}
           className="flex items-center overflow-hidden"
           style={{
             background: `rgba(0,0,0,${p.container.bgOpacity})`,
@@ -149,7 +153,7 @@ export default function FloatingPage() {
             className="shrink-0 object-cover"
             initial={{ scale: p.avatar.initialScale, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={p.avatar.entrySpring}
+            transition={asTransition(p.avatar.entrySpring)}
             style={{
               width: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
               height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
@@ -190,7 +194,7 @@ export default function FloatingPage() {
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{
-                  ...p.arrow.spring,
+                  ...asTransition(p.arrow.spring),
                   delay: p.arrow.delay,
                 }}
                 className="shrink-0 rounded-full flex items-center justify-center cursor-pointer"

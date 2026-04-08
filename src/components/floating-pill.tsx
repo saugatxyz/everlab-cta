@@ -42,13 +42,13 @@ function CascadeWord({ text }: { text: string }) {
             y: 0,
             opacity: 1,
             filter: "blur(0px)",
-            transition: { type: "spring", bounce: 0, duration: 0.35, delay: i * 0.018 },
+            transition: { type: "spring" as const, bounce: 0, duration: 0.35, delay: i * 0.018 },
           }}
           exit={{
             y: -14,
             opacity: 0,
             filter: "blur(4px)",
-            transition: { type: "spring", bounce: 0, duration: 0.25, delay: i * 0.012 },
+            transition: { type: "spring" as const, bounce: 0, duration: 0.25, delay: i * 0.012 },
           }}
           style={{ display: "inline-block", whiteSpace: "pre" }}
         >
@@ -83,12 +83,12 @@ function TimeRoller() {
           animate={{
             y: 0,
             opacity: 1,
-            transition: { type: "spring", bounce: 0, duration: 0.3 },
+            transition: { type: "spring" as const, bounce: 0, duration: 0.3 },
           }}
           exit={{
             y: -18,
             opacity: 0,
-            transition: { type: "spring", bounce: 0, duration: 0.2 },
+            transition: { type: "spring" as const, bounce: 0, duration: 0.2 },
           }}
           className="absolute whitespace-nowrap"
           style={{
@@ -173,7 +173,7 @@ export function FloatingPill({
           y: 0,
           opacity: 1,
           filter: "blur(0px)",
-          transition: { type: "spring", bounce: 0.1, duration: 0.6, delay: 0.2 },
+          transition: { type: "spring" as const, bounce: 0.1, duration: 0.6, delay: 0.2 },
         }}
         className="flex items-center rounded-full overflow-hidden"
         style={{ ...bgStyle, padding: "4px 6px 4px 4px", gap: 12 }}

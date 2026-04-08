@@ -17,7 +17,7 @@ const item = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { type: "spring", bounce: 0, duration: 0.5 },
+    transition: { type: "spring" as const, bounce: 0, duration: 0.5 },
   },
 };
 
@@ -72,13 +72,13 @@ function CascadeText({ text }: { text: string }) {
             y: 0,
             opacity: 1,
             filter: "blur(0px)",
-            transition: { type: "spring", bounce: 0, duration: 0.35, delay: i * 0.012 },
+            transition: { type: "spring" as const, bounce: 0, duration: 0.35, delay: i * 0.012 },
           }}
           exit={{
             y: -18,
             opacity: 0,
             filter: "blur(6px)",
-            transition: { type: "spring", bounce: 0, duration: 0.25, delay: i * 0.008 },
+            transition: { type: "spring" as const, bounce: 0, duration: 0.25, delay: i * 0.008 },
           }}
           style={{ display: "inline-block", whiteSpace: "pre" }}
         >

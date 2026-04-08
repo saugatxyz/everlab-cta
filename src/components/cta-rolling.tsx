@@ -54,7 +54,7 @@ function CascadeText({ text }: { text: string }) {
             opacity: 1,
             filter: "blur(0px)",
             transition: {
-              type: "spring",
+              type: "spring" as const,
               bounce: 0,
               duration: 0.35,
               delay: i * 0.012,
@@ -65,7 +65,7 @@ function CascadeText({ text }: { text: string }) {
             opacity: 0,
             filter: "blur(6px)",
             transition: {
-              type: "spring",
+              type: "spring" as const,
               bounce: 0,
               duration: 0.25,
               delay: i * 0.008,

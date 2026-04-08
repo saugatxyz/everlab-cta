@@ -39,7 +39,7 @@ export function FloatingCard({
           y: 0,
           opacity: 1,
           filter: "blur(0px)",
-          transition: { type: "spring", bounce: 0.1, duration: 0.6, delay: 0.2 },
+          transition: { type: "spring" as const, bounce: 0.1, duration: 0.6, delay: 0.2 },
         }}
         className="flex flex-col overflow-hidden"
         style={{ ...bgStyle, padding: 12, borderRadius: 24, gap: 12 }}
