@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AVATAR_SRC, HERO_SRC } from "./shared";
+import { Avatars, GreenDot, HERO_SRC, item } from "./shared";
 
 const container = {
   hidden: {},
@@ -11,15 +11,6 @@ const container = {
   },
 };
 
-const item = {
-  hidden: { opacity: 0, y: 6, filter: "blur(4px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { type: "spring" as const, bounce: 0, duration: 0.5 },
-  },
-};
 
 // ─── Conditions ──────────────────────────────────────────────
 
@@ -126,14 +117,9 @@ export function CTAStrip({ condition }: { condition: string }) {
         style={{ padding: "12px 32px", gap: 45 }}
       >
         <div className="flex items-center" style={{ gap: 12 }}>
-          {/* Avatar */}
-          <motion.img
-            variants={item}
-            src={AVATAR_SRC}
-            alt=""
-            className="shrink-0 object-cover rounded-full"
-            style={{ width: 36, height: 36 }}
-          />
+          {/* Avatars + green dot */}
+          <Avatars size={36} />
+          <GreenDot />
 
           {/* Rolling text */}
           <motion.div

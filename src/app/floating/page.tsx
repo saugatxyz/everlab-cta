@@ -3,14 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import { useDialKit } from "dialkit";
-import { AVATAR_SRC, HERO_SRC } from "@/components/shared";
+import { AVATAR1_SRC, AVATAR2_SRC, HERO_SRC, DOT_SVG, ARROW_SVG } from "@/components/shared";
 
-// DialKit spring configs need casting to framer-motion's Transition type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const asTransition = (config: any): Transition => config as Transition;
-
-const ARROW_ICON =
-  "http://localhost:3845/assets/15254c4835b19a972a9ca9f74a642d6ed33220d2.svg";
 
 export default function FloatingPage() {
   const [phase, setPhase] = useState<"avatar" | "full">("avatar");
@@ -145,23 +141,55 @@ export default function FloatingPage() {
             gap: phase === "avatar" ? 0 : p.container.gap,
           }}
         >
-          {/* Avatar */}
-          <motion.img
+          {/* Avatars */}
+          <motion.div
             layout
-            src={AVATAR_SRC}
-            alt=""
-            className="shrink-0 object-cover"
+            className="flex items-center shrink-0"
             initial={{ scale: p.avatar.initialScale, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={asTransition(p.avatar.entrySpring)}
-            style={{
-              width: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
-              height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
-              borderRadius: 9999,
-            }}
-          />
+            style={{ paddingRight: phase === "avatar" ? 0 : 1 }}
+          >
+            <img
+              src={AVATAR1_SRC}
+              alt=""
+              className="rounded-full object-cover shrink-0"
+              style={{
+                width: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
+                height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
+                border: "2px solid rgba(0,0,0,0.3)",
+                zIndex: 1,
+              }}
+            />
+            <img
+              src={AVATAR2_SRC}
+              alt=""
+              className="rounded-full object-cover shrink-0"
+              style={{
+                width: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
+                height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
+                marginLeft: phase === "avatar" ? -(p.avatar.size * 0.5) : -(p.avatar.expandedSize * 0.22),
+              }}
+            />
+          </motion.div>
 
-          {/* Text */}
+          {/* Green dot + Text */}
+          <AnimatePresence>
+            {phase === "full" && (
+              <motion.div
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  transition: { delay: p.text.delay, duration: p.text.duration },
+                }}
+                className="flex items-center"
+                style={{ gap: 8 }}
+              >
+                <img src={DOT_SVG} alt="" style={{ width: 8, height: 8 }} />
+              </motion.div>
+            )}
+          </AnimatePresence>
           <AnimatePresence>
             {phase === "full" && (
               <motion.span
@@ -206,7 +234,7 @@ export default function FloatingPage() {
                 }}
               >
                 <img
-                  src={ARROW_ICON}
+                  src={ARROW_SVG}
                   alt=""
                   style={{
                     width: p.arrow.iconSize,

@@ -2,27 +2,12 @@
 
 import { motion } from "framer-motion";
 
-// Figma asset URLs
-export const AVATAR_SRC =
-  "http://localhost:3845/assets/8c2658edb3a43140012c06dd2da6363e2a1c0539.png";
-export const HERO_SRC =
-  "http://localhost:3845/assets/3c4b34795785cdd555afac24d8cd5ff02d166975.png";
-export const DOT_SVG =
-  "http://localhost:3845/assets/ff4cabf5e47aa4c159b1a614f91138d9acf70483.svg";
-// Australian flag emoji as Twemoji image
-export const AU_FLAG_SRC =
-  "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1e6-1f1fa.svg";
-
-export function AUFlag({ size = 14 }: { size?: number }) {
-  return (
-    <img
-      src={AU_FLAG_SRC}
-      alt="AU"
-      className="inline-block shrink-0"
-      style={{ width: size, height: size }}
-    />
-  );
-}
+// Asset paths (served from /public)
+export const AVATAR1_SRC = "/assets/avatar1.png";
+export const AVATAR2_SRC = "/assets/avatar2.png";
+export const HERO_SRC = "/assets/hero.webp";
+export const DOT_SVG = "/assets/dot.svg";
+export const ARROW_SVG = "/assets/arrow.svg";
 
 export const item = {
   hidden: { opacity: 0, y: 6, filter: "blur(4px)" },
@@ -38,14 +23,37 @@ export const item = {
   },
 };
 
-export function Avatar() {
+export function Avatars({ size = 36 }: { size?: number }) {
+  const overlap = Math.round(size * 0.22);
   return (
-    <motion.img
+    <motion.div
       variants={item}
-      src={AVATAR_SRC}
+      className="flex items-center shrink-0"
+      style={{ paddingRight: 8 }}
+    >
+      <img
+        src={AVATAR1_SRC}
+        alt=""
+        className="rounded-full object-cover shrink-0"
+        style={{ width: size, height: size, border: "2px solid black", zIndex: 1 }}
+      />
+      <img
+        src={AVATAR2_SRC}
+        alt=""
+        className="rounded-full object-cover shrink-0"
+        style={{ width: size, height: size, marginLeft: -overlap }}
+      />
+    </motion.div>
+  );
+}
+
+export function GreenDot() {
+  return (
+    <img
+      src={DOT_SVG}
       alt=""
-      className="shrink-0 object-cover rounded-full"
-      style={{ width: 36, height: 36 }}
+      className="shrink-0"
+      style={{ width: 8, height: 8 }}
     />
   );
 }

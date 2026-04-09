@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AVATAR_SRC } from "./shared";
+import { AVATAR1_SRC } from "./shared";
 
 const conditions = [
   { id: "today", word: "today", label: "Today" },
@@ -49,7 +49,7 @@ export function FloatingCard({
           <motion.img
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1, transition: { delay: 0.4, duration: 0.3 } }}
-            src={AVATAR_SRC}
+            src={AVATAR1_SRC}
             alt=""
             className="rounded-full shrink-0 object-cover"
             style={{ width: 40, height: 40 }}

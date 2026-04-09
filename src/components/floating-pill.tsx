@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AVATAR_SRC } from "./shared";
-
-const ARROW_ICON =
-  "http://localhost:3845/assets/15254c4835b19a972a9ca9f74a642d6ed33220d2.svg";
+import { AVATAR1_SRC, ARROW_SVG } from "./shared";
 
 const conditions = [
   { id: "today", word: "today", label: "Today", showTime: true },
@@ -182,7 +179,7 @@ export function FloatingPill({
         <motion.img
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1, transition: { delay: 0.4, duration: 0.3 } }}
-          src={AVATAR_SRC}
+          src={AVATAR1_SRC}
           alt=""
           className="rounded-full shrink-0 object-cover"
           style={{ width: 40, height: 40 }}
@@ -233,7 +230,7 @@ export function FloatingPill({
           className="shrink-0 rounded-full flex items-center justify-center cursor-pointer"
           style={{ ...buttonBg, width: 36, height: 36 }}
         >
-          <img src={ARROW_ICON} alt="" style={{ width: 16, height: 16 }} />
+          <img src={ARROW_SVG} alt="" style={{ width: 16, height: 16 }} />
         </motion.button>
       </motion.div>
     </div>
