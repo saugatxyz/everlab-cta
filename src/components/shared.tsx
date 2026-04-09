@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 
 // Asset paths (served from /public)
-export const AVATAR1_SRC = "/assets/avatar1.png";
-export const AVATAR2_SRC = "/assets/avatar2.png";
+export const AVATARS_SRC = "/assets/avatars.png";
 export const HERO_SRC = "/assets/hero.webp";
 export const DOT_SVG = "/assets/dot.svg";
 export const ARROW_SVG = "/assets/arrow.svg";
@@ -24,26 +23,16 @@ export const item = {
 };
 
 export function Avatars({ size = 36 }: { size?: number }) {
-  const overlap = Math.round(size * 0.22);
+  // Pre-composed image: 268x144 source, scale height to size
+  const width = Math.round((268 / 144) * size);
   return (
-    <motion.div
+    <motion.img
       variants={item}
-      className="flex items-center shrink-0"
-      style={{ paddingRight: 8 }}
-    >
-      <img
-        src={AVATAR1_SRC}
-        alt=""
-        className="rounded-full object-cover shrink-0"
-        style={{ width: size, height: size, border: "2px solid black", zIndex: 1 }}
-      />
-      <img
-        src={AVATAR2_SRC}
-        alt=""
-        className="rounded-full object-cover shrink-0"
-        style={{ width: size, height: size, marginLeft: -overlap }}
-      />
-    </motion.div>
+      src={AVATARS_SRC}
+      alt=""
+      className="shrink-0 object-contain"
+      style={{ height: size, width }}
+    />
   );
 }
 

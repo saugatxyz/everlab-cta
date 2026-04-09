@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import { useDialKit } from "dialkit";
-import { AVATAR1_SRC, AVATAR2_SRC, HERO_SRC, DOT_SVG, ARROW_SVG } from "@/components/shared";
+import { AVATARS_SRC, HERO_SRC, DOT_SVG, ARROW_SVG } from "@/components/shared";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const asTransition = (config: any): Transition => config as Transition;
@@ -111,13 +111,12 @@ export default function FloatingPage() {
   return (
     <div className="min-h-screen flex flex-col bg-black relative">
       {/* Hero background */}
-      <div className="w-full h-screen relative">
-        <img
-          src={HERO_SRC}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
+      <img
+        src={HERO_SRC}
+        alt=""
+        className="w-full"
+        style={{ display: "block" }}
+      />
 
       {/* Floating glass pill */}
       <div
@@ -142,36 +141,19 @@ export default function FloatingPage() {
           }}
         >
           {/* Avatars */}
-          <motion.div
+          <motion.img
             layout
-            className="flex items-center shrink-0"
+            src={AVATARS_SRC}
+            alt=""
+            className="shrink-0 object-contain"
             initial={{ scale: p.avatar.initialScale, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={asTransition(p.avatar.entrySpring)}
-            style={{ paddingRight: phase === "avatar" ? 0 : 1 }}
-          >
-            <img
-              src={AVATAR1_SRC}
-              alt=""
-              className="rounded-full object-cover shrink-0"
-              style={{
-                width: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
-                height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
-                border: "2px solid rgba(0,0,0,0.3)",
-                zIndex: 1,
-              }}
-            />
-            <img
-              src={AVATAR2_SRC}
-              alt=""
-              className="rounded-full object-cover shrink-0"
-              style={{
-                width: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
-                height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
-                marginLeft: phase === "avatar" ? -(p.avatar.size * 0.5) : -(p.avatar.expandedSize * 0.22),
-              }}
-            />
-          </motion.div>
+            style={{
+              height: phase === "avatar" ? p.avatar.size : p.avatar.expandedSize,
+              width: Math.round((268 / 144) * (phase === "avatar" ? p.avatar.size : p.avatar.expandedSize)),
+            }}
+          />
 
           {/* Green dot + Text */}
           <AnimatePresence>
